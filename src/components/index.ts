@@ -2,7 +2,7 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-01-07 19:20:33
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-01-10 18:16:46
+ * @LastEditTime: 2024-01-11 14:53:50
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/components/index.ts
  * @Description: 注册全局组件
  */
@@ -13,7 +13,6 @@ export const install = (app: App) => {
 
   for (const path in requireComponent) {
     const fileName = path.split('/')[1];
-    console.log(fileName, defineAsyncComponent(requireComponent[path]));
     if (fileName) {
       app.component(fileName, defineAsyncComponent(requireComponent[path]));
     }

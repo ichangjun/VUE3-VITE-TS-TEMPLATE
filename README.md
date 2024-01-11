@@ -2,7 +2,7 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-01-05 10:36:01
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-01-05 17:15:47
+ * @LastEditTime: 2024-01-11 16:08:09
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/README.md
  * @Description: 工程描述文档
 -->
@@ -56,6 +56,63 @@ export default defineConfig({
   }
 }
 ```
+
+#### 4. 安装vue-router, 实现自动注册加载路由
+统一路由文件层级规范，views作为业务路由，layouts作为根路由；同时，业务路由作为layouts的子路由；具体实现逻辑如下：
+```shell
+#  第一步，安装 vue-router 插件
+yarn add vue-router@next;
+```
+```typescript
+// 第二步，使用vite的import.meta.glob动态加载业务路由文件
+const viewIndexModules = import.meta.glob('../views/**/index.tsx')
+// 循环业务路由文件，批量生成业务路由集合
+// **注意，views下的路由集合，使用xx/index.tsx的结构
+const childrenRoutes: Array<RouteRecordRaw> = []
+
+Object.keys(viewIndexModules).forEach((path: string) => {
+  // 判断是不是业务组件，如果是业务组件则不添加到路由中
+  if (path.includes('/components')) return
+// 使用正则表达式匹配文件夹名称
+  const routeName = path.match(/\.\.\/views\/(.*)\.tsx$/)[1].split('/')[0];
+  childrenRoutes.push({
+    name: routeName,
+    path: `/${routeName.toLowerCase()}`,
+    component: viewIndexModules[path]
+  })
+})
+// 这样，就可以完成views下业务路由的批量生成
+```
+然后需要按照以上方式，注册根路由
+
+``` typescript
+// 同样，使用vite的import.meta.glob动态加载业务路由文件
+const layoutIndexModules = import.meta.glob('../layouts/**/index.tsx')
+// 不同的是，需要对根路由进行判断，因为根路由不止是一个
+
+const rootRoutes = Object.keys(layoutIndexModules).map((path: string) => {
+  const routeName = path.match(/\.\.\/layouts\/(.*)\.tsx$/)[1].split('/')[0];
+
+  if (routeName === 'index') {
+    return {
+      name: routeName,
+      path: `/`,
+      redirect: '/dashboard',
+      component: layoutIndexModules[path],
+      children: childrenRoutes
+    }
+  } else {
+    return {
+      name: routeName,
+      path: `/${routeName.toLowerCase()}`,
+      component: layoutIndexModules[path],
+      children: childrenRoutes
+    }
+  }
+})
+```
+具体完成代码，请参照 **routes/index.ts** 文件
+
 
 ### 本地运行
 ```shell
