@@ -2,7 +2,7 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-01-05 10:36:01
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-01-11 16:08:09
+ * @LastEditTime: 2024-01-11 16:42:02
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/README.md
  * @Description: 工程描述文档
 -->
@@ -113,6 +113,11 @@ const rootRoutes = Object.keys(layoutIndexModules).map((path: string) => {
 ```
 具体完成代码，请参照 **routes/index.ts** 文件
 
+
+#### 5. vuex 持久化数据
+
+vuex状态管理工具是vue中实现多个组件中共享状态、响应式的状态管理；但是其无法实现持久化的状态保持，需要结合插件 **vuex-persistedstate** ，效果为浏览器刷新后，其数据依然存在且具备响应式，一般用来持久化全局的状态数据：用户登录状态&用户信息、购物车数据等等；具体实现比较简单，可以参考 **store/index.ts中的配置**；
+需要注意的是对于vuex的使用方式，按照模块化的方式配置，可以有效的做到状态数据隔离，互不干扰。
 
 ### 本地运行
 ```shell

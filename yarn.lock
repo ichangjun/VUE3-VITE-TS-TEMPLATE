@@ -587,7 +587,7 @@
     "@vue/compiler-dom" "3.4.5"
     "@vue/shared" "3.4.5"
 
-"@vue/devtools-api@^6.0.0":
+"@vue/devtools-api@^6.0.0", "@vue/devtools-api@^6.0.0-beta.11":
   version "6.5.1"
   resolved "https://r.cnpmjs.org/@vue/devtools-api/-/devtools-api-6.5.1.tgz#7f71f31e40973eeee65b9a64382b13593fdbd697"
   integrity sha512-+KpckaAQyfbvshdDW5xQylLni1asvNSGme1JFs8I1+/H5pHEhqUKMEQD/qn3Nx5+/nycBq11qAEi8lk+LXI2dA==
@@ -730,6 +730,11 @@ debug@^4.1.0, debug@^4.3.1:
   integrity sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==
   dependencies:
     ms "2.1.2"
+
+deepmerge@^4.2.2:
+  version "4.3.1"
+  resolved "https://r.cnpmjs.org/deepmerge/-/deepmerge-4.3.1.tgz#44b5f2147cd3b00d4b56137685966f26fd25dd4a"
+  integrity sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==
 
 electron-to-chromium@^1.4.601:
   version "1.4.622"
@@ -929,6 +934,11 @@ semver@^7.5.4:
   dependencies:
     lru-cache "^6.0.0"
 
+shvl@^2.0.3:
+  version "2.0.3"
+  resolved "https://r2.cnpmjs.org/shvl/-/shvl-2.0.3.tgz#eb4bd37644f5684bba1fc52c3010c96fb5e6afd1"
+  integrity sha512-V7C6S9Hlol6SzOJPnQ7qzOVEWUQImt3BNmmzh40wObhla3XOYMe4gGiYzLrJd5TFa+cI2f9LKIRJTTKZSTbWgw==
+
 source-map-js@^1.0.2:
   version "1.0.2"
   resolved "https://r.cnpmjs.org/source-map-js/-/source-map-js-1.0.2.tgz"
@@ -1014,6 +1024,21 @@ vue@^3.4.5:
     "@vue/runtime-dom" "3.4.5"
     "@vue/server-renderer" "3.4.5"
     "@vue/shared" "3.4.5"
+
+vuex-persistedstate@^4.1.0:
+  version "4.1.0"
+  resolved "https://r2.cnpmjs.org/vuex-persistedstate/-/vuex-persistedstate-4.1.0.tgz#127165f85f5b4534fb3170a5d3a8be9811bd2a53"
+  integrity sha512-3SkEj4NqwM69ikJdFVw6gObeB0NHyspRYMYkR/EbhR0hbvAKyR5gksVhtAfY1UYuWUOCCA0QNGwv9pOwdj+XUQ==
+  dependencies:
+    deepmerge "^4.2.2"
+    shvl "^2.0.3"
+
+vuex@^4.0.2:
+  version "4.0.2"
+  resolved "https://r2.cnpmjs.org/vuex/-/vuex-4.0.2.tgz#f896dbd5bf2a0e963f00c67e9b610de749ccacc9"
+  integrity sha512-M6r8uxELjZIK8kTKDGgZTYX/ahzblnzC4isU1tpmEuOIIKmV+TRdc+H4s8ds2NuZ7wpUTdGRzJRtoj+lI+pc0Q==
+  dependencies:
+    "@vue/devtools-api" "^6.0.0-beta.11"
 
 yallist@^3.0.2:
   version "3.1.1"
