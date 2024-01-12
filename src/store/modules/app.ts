@@ -2,7 +2,7 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-01-11 16:32:25
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-01-11 16:35:30
+ * @LastEditTime: 2024-01-12 14:27:46
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/store/modules/app.ts
  * @Description: 工程持久化数据
  */
