@@ -2,7 +2,7 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-01-05 10:36:01
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-01-05 17:11:30
+ * @LastEditTime: 2024-01-14 20:06:34
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/vite.config.ts
  * @Description: 工程配置文件
  */
@@ -19,4 +19,14 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  server: {
+    port: 8089,
+    proxy: {
+      '/musicApi': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/musicApi/, ''),
+      },
+    }
+  }
 })

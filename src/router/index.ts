@@ -2,7 +2,7 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-01-11 14:39:48
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-01-11 16:00:53
+ * @LastEditTime: 2024-01-12 15:35:21
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/router/index.ts
  * @Description: 工程路由文件
  */
@@ -28,6 +28,7 @@ Object.keys(viewIndexModules).forEach((path: string) => {
 
 const rootRoutes = Object.keys(layoutIndexModules).map((path: string) => {
   const routeName = path.match(/\.\.\/layouts\/(.*)\.tsx$/)[1].split('/')[0];
+  console.log('routeName', routeName);
 
   if (routeName === 'index') {
     return {
@@ -41,8 +42,7 @@ const rootRoutes = Object.keys(layoutIndexModules).map((path: string) => {
     return {
       name: routeName,
       path: `/${routeName.toLowerCase()}`,
-      component: layoutIndexModules[path],
-      children: childrenRoutes
+      component: layoutIndexModules[path]
     }
   }
 })

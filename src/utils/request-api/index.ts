@@ -2,7 +2,7 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2023-04-14 20:28:41
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-01-11 19:09:31
+ * @LastEditTime: 2024-01-14 09:14:56
  * @FilePath: /i-template/src/utils/request-api/index.ts
  * @Description: 基于axios的接口请求实现类
  */
@@ -196,6 +196,6 @@ const Http = new IAxios({
 	serverErrorMessage: '',
 	timeoutNumber: 5000,
 	ignorePendingRequest: true,
-	ignoreLoading: true
+	ignoreLoading: false
 })
 export default Http
