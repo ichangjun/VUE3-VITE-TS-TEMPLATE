@@ -6,12 +6,14 @@
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/layouts/index.tsx
  * @Description: 业务路由主页
  */
+
+
 import { defineComponent, KeepAlive } from 'vue'
 export default defineComponent({
   name: 'Main',
   setup() {
     return () => (
-      <div id="main-view">
+<div id="main-view">
         <router-view>
           {
             ({ Component }) => {
