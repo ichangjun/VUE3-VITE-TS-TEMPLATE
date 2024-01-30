@@ -2,7 +2,7 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-01-12 15:32:55
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-01-15 09:45:35
+ * @LastEditTime: 2024-01-15 15:42:53
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/layouts/login/index.tsx
  * @Description: 登录页面
  */
@@ -45,8 +45,10 @@ export default defineComponent({
     }
     return ()=>(
       <div class={`relative w-full h-full overflow-hidden px-4`}>
-        <div class="text-center text-blue-500">Hello, world!</div>
-        <Form v-model:value={ loginForm }>
+        <div class={'flex items-center absolute right-4 top-4'}>
+
+        </div>
+        {/* <Form v-model:value={ loginForm }>
           <Form.Item label="手机号" name="phone">
             <Input placeholder="请输入手机号" v-model:value={loginForm.phone}/>
           </Form.Item>
@@ -56,7 +58,7 @@ export default defineComponent({
           <Form.Item>
             <Button type="primary" onClick={()=>{handleLogin()}}>登录</Button>
           </Form.Item>
-        </Form>
+        </Form> */}
       </div>
     )
   }

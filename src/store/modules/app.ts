@@ -2,21 +2,26 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-01-11 16:32:25
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-01-12 14:27:46
+ * @LastEditTime: 2024-01-15 16:26:08
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/store/modules/app.ts
  * @Description: 工程持久化数据
  */
+import { ThemeEnum } from '@/enums/app-emuns';
+import {AppStoreState} from '@/types/app'
 export default {
   namespaced: true,
-  state: () => {
-    return {
-      loading: false // 全局loading
-    }
-  },
+  state: ():AppStoreState =>( {
+    loading: false, // 全局loading
+    darkMode: ThemeEnum.LIGHT, // 暗黑模式
+  }),
   mutations: {
     // 设置全局loading
     setLoading(state, value: boolean) {
       state.loading = value
+    },
+    // 设置主题模式
+    setDarkMode(state, value: ThemeEnum) {
+      state.darkMode = value
     }
   },
   actions: {
@@ -27,6 +32,10 @@ export default {
     // 显示loading
     showLoading({ commit }) {
       commit('setLoading', true)
+    },
+     // 设置主题模式
+    setDarkMode({ commit }, value: ThemeEnum) {
+      commit('setDarkMode', value)
     }
   }
 }
