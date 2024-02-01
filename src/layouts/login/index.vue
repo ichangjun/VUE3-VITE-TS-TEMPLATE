@@ -2,12 +2,13 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-01-15 09:56:02
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-01-15 10:05:24
+ * @LastEditTime: 2024-02-01 18:35:20
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/layouts/login/index.vue
  * @Description: 登录页
 -->
 <template>
   <div class="login-view relative w-full h-full overflow-hidden px-4">
+    <app-dark-mode></app-dark-mode>
     <a-form :model="loginForm" name="basic" :label-col="{ span: 2 }" :wrapper-col="{ span: 8 }" autocomplete="off"
       @finish="handleLogin">
       <a-form-item label="手机号" name="phone" :rules="[{ required: true, message: '请输入您的手机号!' }]">
@@ -24,10 +25,11 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { LoginParams } from '@/types/services/login';
+import { LoginParams } from '../../types/services/login';
 import { defineOptions, reactive } from 'vue'
 import { Form as AForm, FormItem as AFormItem, Input as AInput, InputPassword as AInputPassword, Button as AButton, notification } from 'ant-design-vue'
-import { login } from '@/services/login'
+import { login } from '../../services/login'
+import AppDarkMode from './components/app-dark-mode.vue'
 defineOptions(
   {
     name: 'Login'
