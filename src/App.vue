@@ -9,13 +9,19 @@
 
 <template>
   <div id="app" class="app-page-view">
-    <spin :spinning="loading" tip="加载中"></spin>
+    <config-provider :theme="{
+      token: {
+        colorPrimary: '#0960bd'
+      }
+    }">
+      <spin :spinning="loading" tip="加载中"></spin>
+    </config-provider>
     <router-view />
   </div>
 </template>
 <script lang='ts' setup>
 import { defineOptions, computed } from 'vue'
-import { Spin } from 'ant-design-vue'
+import { Spin, ConfigProvider } from 'ant-design-vue'
 import { useStore } from 'vuex'
 defineOptions({
   name: 'App',

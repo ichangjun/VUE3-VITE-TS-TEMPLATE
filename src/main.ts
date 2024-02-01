@@ -2,7 +2,7 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-01-05 10:36:01
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-02-01 18:22:57
+ * @LastEditTime: 2024-02-01 20:47:42
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/main.ts
  * @Description: 入口文件
  */
@@ -10,7 +10,6 @@ import { createApp } from 'vue'
 import { install } from '@/components/index.ts'
 import 'tailwindcss/tailwind.css'
 import '@/styles/preflight.css'
-import 'ant-design-vue/dist/reset.css'
 import App from './App.vue'
 import router from './router'
 import store from './store'

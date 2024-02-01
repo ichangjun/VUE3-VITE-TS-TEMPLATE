@@ -2,67 +2,62 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-01-15 09:56:02
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-02-01 18:35:20
+ * @LastEditTime: 2024-02-01 21:18:03
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/layouts/login/index.vue
  * @Description: 登录页
 -->
 <template>
   <div class="login-view relative w-full h-full overflow-hidden px-4">
-    <app-dark-mode></app-dark-mode>
-    <a-form :model="loginForm" name="basic" :label-col="{ span: 2 }" :wrapper-col="{ span: 8 }" autocomplete="off"
-      @finish="handleLogin">
-      <a-form-item label="手机号" name="phone" :rules="[{ required: true, message: '请输入您的手机号!' }]">
-        <a-input v-model:value="loginForm.phone" />
-      </a-form-item>
-
-      <a-form-item label="密码" name="password" :rules="[{ required: true, message: '请输入您的密码!' }]">
-        <a-input-password v-model:value="loginForm.password" />
-      </a-form-item>
-      <a-form-item>
-        <a-button type="primary" html-type="submit">登录</a-button>
-      </a-form-item>
-    </a-form>
+    <div class="container relative h-full py-2 mx-auto sm:px-10">
+      <div class="flex h-full">
+        <div class="hidden min-h-full pl-4 mr-4 xl:flex xl:flex-col xl:w-6/12">
+          <app-logo></app-logo>
+          <div class="my-auto flex items-start flex-col">
+            <img src="../../assets/images/login-box-bg.svg" class="w-1/2 -mt-16" />
+            <div class="mt-10 font-medium text-white description">{{ description }}</div>
+          </div>
+        </div>
+        <div class="flex w-full h-full py-5 xl:h-auto xl:py-0  xl:my-0 xl:w-6/12">
+          <div
+            class="login-form relative px-5 py-8 mx-auto my-auto rounded-md shadow-md  xl:bg-transparent xl:shadow-none w-[480px]">
+            <login-form />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
-import { LoginParams } from '../../types/services/login';
-import { defineOptions, reactive } from 'vue'
-import { Form as AForm, FormItem as AFormItem, Input as AInput, InputPassword as AInputPassword, Button as AButton, notification } from 'ant-design-vue'
-import { login } from '../../services/login'
-import AppDarkMode from './components/app-dark-mode.vue'
+import { defineOptions } from 'vue'
+import AppLogo from '@/components/i-application/src/app-logo.vue'
+import { useGlobSetting } from '@/hooks/setting/use-glob-setting'
+import LoginForm from './components/login-form.vue'
 defineOptions(
   {
     name: 'Login'
   }
 )
-// 登录表单
-const loginForm = reactive<LoginParams>({
-  phone: '',
-  password: '',
-  md5_password: ''
-})
-const handleLogin = async () => {
-  if (loginForm.phone === '') {
-    notification.open({
-      message: '提示',
-      description: '请输入手机号',
-      duration: 3
-    })
-    return
+// 描述
+const { description } = useGlobSetting()
+</script>
+<style lang="less" scoped>
+.login-view {
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin-left: -48%;
+    background-image: url("../../assets/images/login-bg.svg");
+    background-repeat: no-repeat;
+    background-position: 100%;
+    background-size: auto 100%;
   }
-  if (loginForm.password === '') {
-    notification.open({
-      message: '提示',
-      description: '请输入密码',
-      duration: 3
-    })
-    return
-  }
-  try {
-    const res = await login(loginForm)
-    console.log('res', res)
-  } catch (error) {
-    console.log('error', error)
+
+  .description {
+    font-size: 20px;
   }
 }
-</script>
+</style>
