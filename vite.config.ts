@@ -2,7 +2,7 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-01-05 10:36:01
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-02-01 20:38:56
+ * @LastEditTime: 2024-02-02 10:57:27
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/vite.config.ts
  * @Description: 工程配置文件
  */
@@ -27,6 +27,7 @@ export default defineConfig({
         modifyVars: {
           'primary-color': '#0960bd',
         },
+        additionalData: `@import "${path.resolve(__dirname, 'src/styles/reset.less')}";`,
         javascriptEnabled: true,
       }
     }

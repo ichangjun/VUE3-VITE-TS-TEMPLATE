@@ -2,7 +2,7 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-01-15 09:56:02
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-02-01 21:18:03
+ * @LastEditTime: 2024-02-02 11:02:01
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/layouts/login/index.vue
  * @Description: 登录页
 -->
@@ -17,7 +17,7 @@
             <div class="mt-10 font-medium text-white description">{{ description }}</div>
           </div>
         </div>
-        <div class="flex w-full h-full py-5 xl:h-auto xl:py-0  xl:my-0 xl:w-6/12">
+        <div class="flex w-full h-full py-5 xl:h-auto xl:py-0  xl:my-0 xl:w-6/12 duration-200">
           <div
             class="login-form relative px-5 py-8 mx-auto my-auto rounded-md shadow-md  xl:bg-transparent xl:shadow-none w-[480px]">
             <login-form />
@@ -41,6 +41,8 @@ defineOptions(
 const { description } = useGlobSetting()
 </script>
 <style lang="less" scoped>
+@dark-bg: #293146;
+
 .login-view {
   &::before {
     content: '';
@@ -54,10 +56,24 @@ const { description } = useGlobSetting()
     background-repeat: no-repeat;
     background-position: 100%;
     background-size: auto 100%;
+
+    @media (max-width: @screen-xl) {
+      display: none;
+    }
   }
 
   .description {
-    font-size: 20px;
+    font-size: 30px;
+  }
+}
+
+@media (max-width: @screen-xl) {
+  .login-view {
+    background-color: @dark-bg;
+
+    .login-form {
+      background-color: #ffffff;
+    }
   }
 }
 </style>

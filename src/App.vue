@@ -8,13 +8,15 @@
  */
 
 <template>
-  <div id="app" class="app-page-view">
+  <div class="app-page-view">
     <config-provider :theme="{
       token: {
         colorPrimary: '#0960bd'
       }
     }">
-      <spin :spinning="loading" tip="加载中"></spin>
+      <div v-if="loading" class="absolute w-full h-full loading-mask">
+        <spin :spinning="loading" tip="加载中"></spin>
+      </div>
     </config-provider>
     <router-view />
   </div>
@@ -32,3 +34,23 @@ const loading = computed(() => {
 })
 </script>
 
+<style lang="less" scoped>
+.loading-mask {
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+
+  .ant-spin {
+    position: relative;
+    left: 0;
+    top: 0;
+  }
+}
+</style>

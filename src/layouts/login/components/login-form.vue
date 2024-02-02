@@ -2,7 +2,7 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-02-01 20:17:34
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-02-01 21:19:07
+ * @LastEditTime: 2024-02-02 16:07:10
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/layouts/login/components/login-form.vue
  * @Description: 登录表单
 -->
@@ -31,25 +31,36 @@
       </a-col>
     </a-row>
     <a-form-item>
-      <a-button size="large" block type="primary" html-type="submit">登录</a-button>
+      <a-button size="large" block type="primary" html-type="submit" :loading="loginLoading">登录</a-button>
     </a-form-item>
   </a-form>
 </template>
 <script setup lang='ts'>
 import { defineOptions, reactive, ref } from 'vue'
 import { Form as AForm, FormItem as AFormItem, Input as AInput, InputPassword as AInputPassword, Button as AButton, notification, Row as ARow, Col as ACol, Checkbox as ACheckBox } from 'ant-design-vue'
-import { LoginParams } from '@/types/services/login';
+import { LoginParams, LoginResponse } from '@/types/services/login';
 import { login } from '@/services/login'
+import { Md5 } from 'ts-md5'
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 defineOptions({
   name: 'LoginForm'
 })
+const store = useStore()
+const router = useRouter()
 // 登录表单
 const loginForm = reactive<LoginParams>({
   phone: '',
   password: '',
   md5_password: ''
 })
-const rememberMe = ref(false)
+const loginLoading = ref(false)
+const rememberMe = ref(store.getters.rememberMe)
+if (rememberMe.value) {
+  loginForm.phone = store.getters.phone
+  loginForm.password = store.getters.password
+}
+// 登录
 const handleLogin = async () => {
   if (loginForm.phone === '') {
     notification.open({
@@ -67,14 +78,38 @@ const handleLogin = async () => {
     })
     return
   }
+  // 密码进行MD5加密，后端进行解密
+  loginForm.md5_password = Md5.hashStr(loginForm.password).toString()
   try {
-    const res = await login(loginForm)
-    console.log('res', res)
+    loginLoading.value = true
+    const res: LoginResponse = await login({
+      phone: loginForm.phone,
+      md5_password: loginForm.md5_password
+    })
+    if (res && res.code === 200) {
+      await store.dispatch('auth/setToken', res.token)
+      await store.dispatch('auth/setRememberMe', rememberMe.value)
+      // 是否需要记住密码
+      if (rememberMe.value) {
+        await store.dispatch('auth/setLoginInfo', {
+          phone: loginForm.phone,
+          password: loginForm.password
+        })
+      }
+      // 持久化用户信息
+      await store.dispatch('auth/setProfile', res.profile)
+      // 提示登录成功，跳转首页
+      notification.success({
+        message: '登录成功',
+        description: `欢迎换来，${res.profile.nickname}`,
+        duration: 3
+      })
+      router.push('/dashboard')
+    }
+
+    loginLoading.value = false
   } catch (error) {
-    console.log('error', error)
+    loginLoading.value = false
   }
 }
 </script>
-<style lang='less' scoped>
-.login-form-view {}
-</style>

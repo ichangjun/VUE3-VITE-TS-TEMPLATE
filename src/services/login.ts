@@ -2,7 +2,7 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-01-12 14:54:33
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-01-12 15:32:00
+ * @LastEditTime: 2024-02-02 14:57:32
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/api/login.ts
  * @Description: 登录相关接口请求
  */
@@ -19,6 +19,8 @@ export const login = (data: LoginParams) => {
   return Http.request({
     url: ApiPath.LoginByPhone,
     method: 'post',
-    data
+    data,
+  }, {
+    ignoreLoading: true
   })
 }

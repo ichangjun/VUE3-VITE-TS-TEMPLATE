@@ -2,7 +2,7 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2023-04-14 20:28:41
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-01-14 09:14:56
+ * @LastEditTime: 2024-02-02 14:57:27
  * @FilePath: /i-template/src/utils/request-api/index.ts
  * @Description: 基于axios的接口请求实现类
  */
@@ -128,8 +128,11 @@ class IAxios {
 						if (!ignoreLoading) {
 							store.dispatch('app/hideLoading')
 						}
-						return Promise.resolve(_data?.data)
+						return Promise.resolve(_data?.data || _data)
 					default:
+						if (!ignoreLoading) {
+							store.dispatch('app/hideLoading')
+						}
 						// 是否统一处理业务异常
 						if (isShowServerErrorMessage) {
 							handleError({
@@ -144,9 +147,6 @@ class IAxios {
 								}
 							})
 							return Promise.reject(_data?.data)
-						}
-						if (!ignoreLoading) {
-							store.dispatch('app/hideLoading')
 						}
 						return Promise.resolve(_data)
 				}
