@@ -10,4 +10,5 @@ import { ThemeEnum } from '@/enums/app-emuns'
 export interface AppStoreState {
   loading: boolean // 全局loading
   darkMode: ThemeEnum // 暗黑模式
+  menuCollapsed: boolean
 }

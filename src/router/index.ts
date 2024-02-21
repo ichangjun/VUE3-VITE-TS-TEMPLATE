@@ -2,7 +2,7 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-01-11 14:39:48
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-02-01 18:24:26
+ * @LastEditTime: 2024-02-04 16:45:29
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/router/index.ts
  * @Description: 工程路由文件
  */
@@ -15,10 +15,14 @@ const layoutIndexModules = import.meta.glob('../layouts/**/index.vue')
 const childrenRoutes: Array<RouteRecordRaw> = []
 
 Object.keys(viewIndexModules).forEach((path: string) => {
+  console.log(path, '======path');
+
   // 判断是不是业务组件，如果是业务组件则不添加到路由中
   if (path.includes('/components')) return
-// 使用正则表达式匹配文件夹名称
-  const routeName = path.match(/\.\.\/views\/(.*)\.vue$/)[1].split('/')[0];
+  // 使用正则表达式匹配文件夹名称
+  const routePath = path.match(/\.\.\/views\/(.*)\.vue$/)[1];
+  const lastIndex = routePath.lastIndexOf('/')
+  const routeName = routePath.substring(0, lastIndex)
   childrenRoutes.push({
     name: routeName,
     path: `/${routeName.toLowerCase()}`,
@@ -27,21 +31,22 @@ Object.keys(viewIndexModules).forEach((path: string) => {
 })
 
 const rootRoutes = Object.keys(layoutIndexModules).map((path: string) => {
-  const routeName = path.match(/\.\.\/layouts\/(.*)\.vue$/)[1].split('/')[0];
-  console.log('routeName', routeName);
+  const fileName = path.match(/\.\.\/layouts\/(.*)\.vue$/)[1].split('/')[0];
+  const routePath = path.match(/\.\.\/layouts\/(.*)\.vue$/)[1].split('/')[1];
+  console.log(fileName, 'routeName');
 
-  if (routeName === 'index') {
+  if (fileName === 'default') {
     return {
-      name: routeName,
+      name: routePath,
       path: `/`,
       redirect: '/dashboard',
       component: layoutIndexModules[path],
       children: childrenRoutes
     }
-  } else {
+  } else if (fileName === 'pages') {
     return {
-      name: routeName,
-      path: `/${routeName.toLowerCase()}`,
+      name: routePath,
+      path: `/${routePath.toLowerCase()}`,
       component: layoutIndexModules[path]
     }
   }

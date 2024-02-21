@@ -2,7 +2,7 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-01-15 09:56:02
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-02-02 11:02:01
+ * @LastEditTime: 2024-02-02 16:40:57
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/layouts/login/index.vue
  * @Description: 登录页
 -->
@@ -13,7 +13,7 @@
         <div class="hidden min-h-full pl-4 mr-4 xl:flex xl:flex-col xl:w-6/12">
           <app-logo></app-logo>
           <div class="my-auto flex items-start flex-col">
-            <img src="../../assets/images/login-box-bg.svg" class="w-1/2 -mt-16" />
+            <img src="../../../assets/images/login-box-bg.svg" class="w-1/2 -mt-16" />
             <div class="mt-10 font-medium text-white description">{{ description }}</div>
           </div>
         </div>
@@ -29,8 +29,8 @@
 </template>
 <script lang="ts" setup>
 import { defineOptions } from 'vue'
-import AppLogo from '@/components/i-application/src/app-logo.vue'
-import { useGlobSetting } from '@/hooks/setting/use-glob-setting'
+import AppLogo from '../../../components/i-application/src/app-logo.vue'
+import { useGlobSetting } from '../../../hooks/setting/use-glob-setting'
 import LoginForm from './components/login-form.vue'
 defineOptions(
   {
@@ -52,7 +52,7 @@ const { description } = useGlobSetting()
     width: 100%;
     height: 100%;
     margin-left: -48%;
-    background-image: url("../../assets/images/login-bg.svg");
+    background-image: url("../../../assets/images/login-bg.svg");
     background-repeat: no-repeat;
     background-position: 100%;
     background-size: auto 100%;

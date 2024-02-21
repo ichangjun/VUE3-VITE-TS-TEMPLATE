@@ -17,4 +17,6 @@ export default {
   phone: (state) => state.auth.phone,
   // 密码
   password: (state) => state.auth.password,
+  // 菜单栏的展开折叠
+  menuCollapsed: (state)=> state.app.menuCollapsed
 }
