@@ -2,22 +2,76 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-02-02 16:51:53
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-02-02 18:14:58
+ * @LastEditTime: 2024-02-22 16:33:05
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/layouts/default/components/header/index.vue
  * @Description: 头部
 -->
 <template>
-  <Layout.Header class="layout-header-view">
-    <div @click.stop="handleCollapsed()">
-      <DoubleRightOutlined v-if="getCollapsed"></DoubleRightOutlined>
-      <DoubleLeftOutlined v-else></DoubleLeftOutlined>
+  <Layout.Header class="layout-header-view" style="padding-inline: 24px;">
+    <div class="flex">
+      <div class="left pr-4" @click.stop="handleCollapsed()">
+        <MenuUnfoldOutlined v-if="getCollapsed"></MenuUnfoldOutlined>
+        <MenuFoldOutlined v-else></MenuFoldOutlined>
+      </div>
+      <div class="right flex-1">
+        <div class="flex justify-end items-center space-x-4 h-full">
+          <a-tooltip title="搜索">
+            <a-button shape="circle" class="flex items-center justify-center">
+              <template #icon>
+                <i-svg-icon icon="search" size="20" color="rgb(78, 89, 105)"></i-svg-icon>
+              </template>
+            </a-button>
+          </a-tooltip>
+          <a-tooltip title="点击切换为暗黑模式">
+            <a-button shape="circle" class="flex items-center justify-center">
+              <template #icon>
+                <i-svg-icon icon="sun" size="19"></i-svg-icon>
+              </template>
+            </a-button>
+          </a-tooltip>
+          <a-tooltip title="消息通知" class="flex items-center justify-center">
+            <a-button shape="circle">
+              <template #icon>
+                <i-svg-icon icon="distance" size="24" color="rgb(78, 89, 105)"></i-svg-icon>
+              </template>
+            </a-button>
+          </a-tooltip>
+          <a-tooltip title="全屏">
+            <a-button shape="circle" class="flex items-center justify-center">
+              <template #icon>
+                <i-svg-icon icon="full-screen" size="16" color="rgb(78, 89, 105)"></i-svg-icon>
+              </template>
+            </a-button>
+          </a-tooltip>
+          <a-space>
+            <a-dropdown placement="bottomLeft" :arrow="{ pointAtCenter: true }">
+              <span class="flex">
+                <avatar :src="userInfo.avatarUrl"></avatar>
+              </span>
+              <template #overlay>
+                <a-menu>
+                  <a-menu-item key="1">
+                    <span class="flex items-center justify-start"><i-svg-icon icon="user" size="20"></i-svg-icon><span
+                        class="pl-1 text-[13px]">用户中心</span></span>
+                  </a-menu-item>
+                  <a-menu-item key="2"> <span class="flex items-center justify-start"><i-svg-icon icon="save"
+                        size="20"></i-svg-icon><span class="pl-1 text-[13px]">用户设置</span></span></a-menu-item>
+                  <a-menu-divider />
+                  <a-menu-item key="3"> <span class="flex items-center justify-start"><i-svg-icon icon="warning"
+                        size="20"></i-svg-icon><span class="pl-1 text-[13px]">退出登录</span></span></a-menu-item>
+                </a-menu>
+              </template>
+            </a-dropdown>
+          </a-space>
+        </div>
+      </div>
     </div>
   </Layout.Header>
 </template>
 <script setup lang='ts'>
 import { defineOptions, computed } from 'vue'
-import { Layout } from 'ant-design-vue'
-import { DoubleRightOutlined, DoubleLeftOutlined } from '@ant-design/icons-vue'
+import { Layout, Button as AButton, Tooltip as ATooltip, Dropdown as ADropdown, Space as ASpace, Avatar, Menu as AMenu, MenuItem as AMenuItem, MenuDivider as AMenuDivider } from 'ant-design-vue'
+import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
 import { useStore } from 'vuex'
 defineOptions({
   name: 'LayoutHeader'
@@ -29,6 +83,11 @@ const getCollapsed = computed(() => {
 const handleCollapsed = () => {
   store.dispatch('app/setMenuCollapsed', !getCollapsed.value)
 }
+const userInfo = computed(() => {
+  return store.getters.userInfo
+})
+console.log('userInfo', userInfo.value);
+
 </script>
 <style lang='less' scoped>
 .layout-header-view {

@@ -15,6 +15,8 @@ export default {
   rememberMe: (state) => state.auth.rememberMe,
   // 手机号
   phone: (state) => state.auth.phone,
+  // 用户信息
+  userInfo: (state) => state.auth.profile,
   // 密码
   password: (state) => state.auth.password,
   // 菜单栏的展开折叠
