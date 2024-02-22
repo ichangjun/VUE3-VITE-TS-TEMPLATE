@@ -2,13 +2,13 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-02-04 11:07:43
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-02-21 15:08:40
+ * @LastEditTime: 2024-02-22 19:22:47
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/layouts/default/components/sider/index.vue
  * @Description: 左侧菜单栏
 -->
 <template>
-  <Layout.Sider class='layout-menu-view' v-model:collapsed="getCollapsed">
-    <Menu theme='dark' mode='inline' :selected-keys="selectedKeys" :open-keys="openKeys" :subMenuOpenDelay="0.5"
+  <Layout.Sider theme="light" class='layout-menu-view' v-model:collapsed="getCollapsed">
+    <Menu theme='light' mode='inline' :selected-keys="selectedKeys" :open-keys="openKeys" :subMenuOpenDelay="0.5"
       :inline-indent="12" @click="handleMenuClick">
       <sider-menu :menu-list="menuList" />
     </Menu>

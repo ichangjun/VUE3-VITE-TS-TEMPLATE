@@ -2,7 +2,7 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-02-02 16:51:53
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-02-22 16:33:05
+ * @LastEditTime: 2024-02-22 19:17:27
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/layouts/default/components/header/index.vue
  * @Description: 头部
 -->
@@ -16,34 +16,34 @@
       <div class="right flex-1">
         <div class="flex justify-end items-center space-x-4 h-full">
           <a-tooltip title="搜索">
-            <a-button shape="circle" class="flex items-center justify-center">
+            <a-button shape="circle" size="small" class="flex items-center justify-center">
               <template #icon>
-                <i-svg-icon icon="search" size="20" color="rgb(78, 89, 105)"></i-svg-icon>
+                <i-svg-icon icon="search" size="16" color="rgb(78, 89, 105)"></i-svg-icon>
               </template>
             </a-button>
           </a-tooltip>
           <a-tooltip title="点击切换为暗黑模式">
-            <a-button shape="circle" class="flex items-center justify-center">
+            <a-button shape="circle" size="small" class="flex items-center justify-center">
               <template #icon>
-                <i-svg-icon icon="sun" size="19"></i-svg-icon>
+                <i-svg-icon icon="sun" size="15"></i-svg-icon>
               </template>
             </a-button>
           </a-tooltip>
           <a-tooltip title="消息通知" class="flex items-center justify-center">
-            <a-button shape="circle">
+            <a-button shape="circle" size="small">
               <template #icon>
-                <i-svg-icon icon="distance" size="24" color="rgb(78, 89, 105)"></i-svg-icon>
+                <i-svg-icon icon="distance" size="20" color="rgb(78, 89, 105)"></i-svg-icon>
               </template>
             </a-button>
           </a-tooltip>
           <a-tooltip title="全屏">
-            <a-button shape="circle" class="flex items-center justify-center">
+            <a-button shape="circle" size="small" class="flex items-center justify-center">
               <template #icon>
-                <i-svg-icon icon="full-screen" size="16" color="rgb(78, 89, 105)"></i-svg-icon>
+                <i-svg-icon icon="full-screen" size="12" color="rgb(78, 89, 105)"></i-svg-icon>
               </template>
             </a-button>
           </a-tooltip>
-          <a-space>
+          <a-space class="pl-2">
             <a-dropdown placement="bottomLeft" :arrow="{ pointAtCenter: true }">
               <span class="flex">
                 <avatar :src="userInfo.avatarUrl"></avatar>

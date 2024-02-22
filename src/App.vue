@@ -11,7 +11,11 @@
   <div class="app-page-view">
     <config-provider :theme="{
       token: {
-        colorPrimary: '#0960bd'
+        colorPrimary: '#165DFF',
+        fontFamily: fontFamily,
+        fontWeightStrong: 200,
+        fontSize: 13,
+        colorTextBase: '#4E5969',
       }
     }">
       <div v-if="loading" class="absolute w-full h-full loading-mask">
@@ -32,6 +36,7 @@ const store = useStore()
 const loading = computed(() => {
   return store.getters.loading
 })
+const fontFamily = 'Inter,"-apple-system",BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","noto sans","Microsoft YaHei","Helvetica Neue",Helvetica,Arial,sans-serif'
 </script>
 
 <style lang="less" scoped>
