@@ -2,12 +2,12 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-02-02 16:51:53
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-02-22 19:17:27
+ * @LastEditTime: 2024-02-22 19:49:45
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/layouts/default/components/header/index.vue
  * @Description: 头部
 -->
 <template>
-  <Layout.Header class="layout-header-view" style="padding-inline: 24px;">
+  <Layout.Header class="layout-header-view h-[48px]" style="padding-inline: 24px;">
     <div class="flex">
       <div class="left pr-4" @click.stop="handleCollapsed()">
         <MenuUnfoldOutlined v-if="getCollapsed"></MenuUnfoldOutlined>
@@ -86,11 +86,13 @@ const handleCollapsed = () => {
 const userInfo = computed(() => {
   return store.getters.userInfo
 })
-console.log('userInfo', userInfo.value);
 
 </script>
 <style lang='less' scoped>
 .layout-header-view {
   background-color: #fff;
+  @height: 52px;
+  height: @height;
+  line-height: @height;
 }
 </style>
