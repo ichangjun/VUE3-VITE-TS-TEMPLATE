@@ -13,6 +13,7 @@ export interface TabProps {
   fullPath: string; // 完整路径
   query?: any; // 路由参数
   canClose?: boolean; // 是否可以关闭
+  isContext?: boolean = false; // 是否当前右键触发
   isShow?: boolean; // 是否显示
   isCurrent?: boolean; // 是否是当前tab
   ignoreCache?: boolean; // 是否忽略缓存

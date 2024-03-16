@@ -2,7 +2,7 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-02-22 20:13:56
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-03-16 15:44:38
+ * @LastEditTime: 2024-03-16 16:58:33
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/store/modules/tab-menu.ts
  * @Description: 多标签页持久化数据
  */
@@ -40,6 +40,17 @@ export default {
         // 添加新的tab
         state.tabList.push({...item, isCurrent: true, isShow: true})
       }
+    },
+    updateContextTab(state, path: string) {
+      if (path) {
+        state.tabList = state.tabList.map((item: TabProps) => {
+          return { ...item, isContext: item.fullPath === path }
+        })
+      } else {
+        state.tabList = state.tabList.map((item: TabProps) => {
+          return { ...item, isContext: false }
+        })
+      }
     }
   },
   actions: {
@@ -51,6 +62,10 @@ export default {
     updateTab({ commit }, path: string) {
       if (tabWhiteList.includes(path)) return
       commit('updateTab', path)
+    },
+    // 右键菜单状态监听
+    updateContextTab({ commit }, path: string) {
+      commit('updateContextTab', path)
     },
     // 删除tab
     removeTab({ state, commit }, tab: TabProps) {
