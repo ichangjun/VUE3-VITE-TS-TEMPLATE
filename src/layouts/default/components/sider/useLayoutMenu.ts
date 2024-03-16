@@ -2,7 +2,7 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-02-02 18:08:12
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-03-16 15:21:16
+ * @LastEditTime: 2024-03-16 15:50:06
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/layouts/default/components/menu/useLayoutMenu.ts
  * @Description: 菜单栏数据
  */
@@ -34,6 +34,7 @@ export const useLayoutMenu = () => {
         title: item.label,
         name: item.label,
         fullPath: item.path,
+        icon: item.icon,
         canClose: item.path !== tabDefaultPage.fullPath,
         isShow: route.path === item.path || item.path === tabDefaultPage.fullPath,
         isCurrent: route.path === item.path
@@ -88,12 +89,13 @@ const getTreePath = (tree: Array<MenuItem>, func: any, path: Array<string>) => {
 const flatMenuList = (list) => {
   return list.reduce((result, item) => {
 
-    const { children,  title, label, key, path } = item
+    const { children,  title, label, key, path, icon } = item
     result.push({
       key,
       label,
       title,
-      path
+      path,
+      icon
     })
     if (children && children.length > 0) {
       result.push(...flatMenuList(children))

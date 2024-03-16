@@ -2,7 +2,7 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-02-22 20:04:06
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-03-16 15:42:42
+ * @LastEditTime: 2024-03-16 15:51:45
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/layouts/default/components/tab-menu/index.vue
  * @Description: tab菜单
 -->
@@ -10,8 +10,13 @@
   <div class='tab-view-view w-full h-[32px] bg-white px-4 flex flex-nowrap items-center'>
     <a-tag v-for="item in tabList" :key="item.fullPath" :closable="item.canClose && item.isCurrent"
       :color="item.isCurrent ? 'processing' : 'default'" :bordered="false" class="text-[12px] flex cursor-pointer"
-      @click="handleTab(item)" @close="handleCloseTab(item)">{{ item.title
-      }}</a-tag>
+      @click="handleTab(item)" @close="handleCloseTab(item)">
+      <template #icon>
+        <i-svg-icon v-if="item.icon" :icon="item.icon" :color="item.isCurrent ? '#1677ff' : 'rgba(78, 89, 105, 0.88)'"
+          size="18px" />
+      </template>
+      {{ item.title }}
+    </a-tag>
   </div>
 </template>
 <script setup lang='ts'>
