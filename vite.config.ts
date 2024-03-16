@@ -2,7 +2,7 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-01-05 10:36:01
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-02-02 10:57:27
+ * @LastEditTime: 2024-03-12 20:38:50
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/vite.config.ts
  * @Description: 工程配置文件
  */
@@ -33,7 +33,13 @@ export default defineConfig({
     }
   },
   server: {
-    port: 8089,
+    // host: '192.168.2.25',
+    port: 8090,
+    open: true,
+    // hmr: {
+    //   protocol: 'ws',
+    //   host: '192.168.2.25'
+    // },
     proxy: {
       '/musicApi': {
         target: 'http://localhost:3000',

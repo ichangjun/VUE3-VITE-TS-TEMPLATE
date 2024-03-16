@@ -9,7 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@vueuse/core": "^5.0.0",
     "axios": "^1.2.0-alpha.1",
     "pnpm": "^8.15.1",
     "qs": "^6.11.2",
@@ -20,6 +19,7 @@
   "devDependencies": {
     "@types/node": "^20.10.6",
     "@vitejs/plugin-vue": "^4.5.2",
+    "@vueuse/core": "^10.9.0",
     "ant-design-vue": "4.x",
     "autoprefixer": "^10.4.16",
     "less": "^4.2.0",

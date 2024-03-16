@@ -1,4 +1,4 @@
-import { profile } from "@/types/services/account"
+import { Profile } from "@/types/services/account"
 import { LoginParams } from "@/types/services/login"
 
 export default {
@@ -22,7 +22,7 @@ export default {
       state.phone = info.phone
       state.password = info.password
     },
-    setProfile(state, value: profile) {
+    setProfile(state, value: Profile) {
       state.profile = value
     }
   },
@@ -36,7 +36,7 @@ export default {
     setLoginInfo({ commit }, info: LoginParams) {
       commit('setLoginInfo', info)
     },
-    setProfile({ commit }, value: profile) {
+    setProfile({ commit }, value: Profile) {
       commit('setProfile', value)
     }
   }

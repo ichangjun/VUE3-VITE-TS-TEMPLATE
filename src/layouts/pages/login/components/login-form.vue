@@ -2,7 +2,7 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-02-01 20:17:34
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-02-02 16:07:10
+ * @LastEditTime: 2024-03-16 13:10:29
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/layouts/login/components/login-form.vue
  * @Description: 登录表单
 -->
@@ -50,8 +50,8 @@ const store = useStore()
 const router = useRouter()
 // 登录表单
 const loginForm = reactive<LoginParams>({
-  phone: '',
-  password: '',
+  phone: '17714331167',
+  password: 'Changjun@1992',
   md5_password: ''
 })
 const loginLoading = ref(false)

@@ -24,7 +24,8 @@ defineOptions({
   name: 'LayoutSider'
 })
 const store = useStore()
-const { selectedKeys, openKeys, menuList, handleMenuClick } = useLayoutMenu()
+const { selectedKeys, openKeys, menuList, handleMenuClick, initTabMenuList } = useLayoutMenu()
+initTabMenuList()
 
 const getCollapsed = computed(() => {
   return store.getters.menuCollapsed

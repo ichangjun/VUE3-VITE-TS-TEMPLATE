@@ -2,7 +2,7 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-01-11 16:21:45
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-02-02 16:03:01
+ * @LastEditTime: 2024-03-12 21:57:03
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/store/getters.ts
  * @Description: getters 取数据
  */
@@ -17,8 +17,11 @@ export default {
   phone: (state) => state.auth.phone,
   // 用户信息
   userInfo: (state) => state.auth.profile,
+  token: (state) => state.auth.token,
   // 密码
   password: (state) => state.auth.password,
   // 菜单栏的展开折叠
-  menuCollapsed: (state)=> state.app.menuCollapsed
+  menuCollapsed: (state) => state.app.menuCollapsed,
+  // 多标签页
+  tabList: (state) => state.tabMenu.tabList
 }
