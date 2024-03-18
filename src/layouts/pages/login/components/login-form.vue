@@ -2,7 +2,7 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-02-01 20:17:34
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-03-16 13:10:29
+ * @LastEditTime: 2024-03-18 17:32:58
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/layouts/login/components/login-form.vue
  * @Description: 登录表单
 -->
@@ -98,12 +98,6 @@ const handleLogin = async () => {
       }
       // 持久化用户信息
       await store.dispatch('auth/setProfile', res.profile)
-      // 提示登录成功，跳转首页
-      notification.success({
-        message: '登录成功',
-        description: `欢迎换来，${res.profile.nickname}`,
-        duration: 3
-      })
       router.push('/dashboard')
     }
 
