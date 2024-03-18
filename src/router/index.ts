@@ -2,7 +2,7 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-01-11 14:39:48
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-03-18 17:34:19
+ * @LastEditTime: 2024-03-18 19:34:53
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/router/index.ts
  * @Description: 工程路由文件
  */
@@ -52,7 +52,7 @@ const rootRoutes = Object.keys(layoutIndexModules).map((path: string) => {
   }
 })
 
-const routes: Array<RouteRecordRaw> = rootRoutes
+const routes: Array<RouteRecordRaw> = rootRoutes as Array<RouteRecordRaw>;
 const router = createRouter({
   history: createWebHistory(),
   routes
