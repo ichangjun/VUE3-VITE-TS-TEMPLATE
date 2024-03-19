@@ -2,7 +2,7 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-02-22 20:13:56
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-03-16 16:58:33
+ * @LastEditTime: 2024-03-19 22:38:24
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/store/modules/tab-menu.ts
  * @Description: 多标签页持久化数据
  */
@@ -23,7 +23,7 @@ export default {
       state.allTabMenu = list
       state.tabList = list.filter((item: TabProps) => item.isShow)
     },
-    // 更新tab
+    // 追加&删除更新tab
     updateTab(state, path: string) {
       if (state.tabList.some((item: TabProps) => item.fullPath === path)) {
         state.tabList = state.tabList.map((item: TabProps) => {
@@ -32,8 +32,7 @@ export default {
         })
       } else {
         const item = state.allTabMenu.find((item: TabProps) => item.fullPath === path)
-
-        // 所有的置为非当前
+        // 所有的tab置为非当前
         state.tabList = state.tabList.map((item: TabProps) => {
           return {...item, isCurrent: false}
         })
@@ -41,6 +40,7 @@ export default {
         state.tabList.push({...item, isCurrent: true, isShow: true})
       }
     },
+    // tab右键菜单状态监听
     updateContextTab(state, path: string) {
       if (path) {
         state.tabList = state.tabList.map((item: TabProps) => {
@@ -78,6 +78,32 @@ export default {
           resolve(preTab.fullPath)
         } catch (error) {
           reject('关闭当前tab标签失败!')
+        }
+      })
+    },
+    // 删除其他tab
+    removeOtherTab({ state, commit }, path: string) {
+      return new Promise((resolve, reject) => {
+        try {
+          const _newTabs = state.tabList.filter((item: TabProps) => item.fullPath === path || item.canClose === false)
+          commit('updateTab', path)
+          state.tabList = _newTabs
+          resolve('关闭其他tab标签成功!')
+        } catch (error) {
+          reject('关闭其他tab标签失败!')
+        }
+      })
+    },
+    // 删除所有tab
+    removeAllTab({ state, commit }) {
+      return new Promise((resolve, reject) => {
+        try {
+          const _newTabs = state.tabList.filter((item: TabProps) => item.canClose === false)
+          commit('updateTab', state.tabList[0].fullPath)
+          state.tabList = _newTabs
+          resolve(state.tabList[0].fullPath)
+        } catch (error) {
+          reject('关闭所有tab标签失败!')
         }
       })
     }

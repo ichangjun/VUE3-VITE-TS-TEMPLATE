@@ -2,7 +2,7 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-02-22 20:04:06
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-03-16 17:15:16
+ * @LastEditTime: 2024-03-19 22:16:49
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/layouts/default/components/tab-menu/index.vue
  * @Description: tab菜单
 -->
@@ -22,39 +22,19 @@
           {{ item.title }}
         </a-tag>
         <template #overlay>
-          <a-menu @click="handleContextMenu">
-            <a-menu-item key="closeCurrent">
-              <template #icon>
-                <InfoCircleOutlined style="font-size: 13px; color: rgba(78, 89, 105, 0.88);" />
-              </template>
-              关闭当前
-            </a-menu-item>
-            <a-menu-item key="closeOther">
-              <template #icon>
-                <InfoCircleOutlined style="font-size: 13px; color: rgba(78, 89, 105, 0.88);" />
-              </template>
-              关闭其他
-            </a-menu-item>
-            <a-menu-divider />
-            <a-menu-item key="closeAll">
-              <template #icon>
-                <CloseCircleOutlined style="font-size: 13px; color: rgba(78, 89, 105, 0.88);" />
-              </template>
-              关闭全部
-            </a-menu-item>
-          </a-menu>
+          <a-menu @click="handleContextMenu" :items="contextTab"></a-menu>
         </template>
       </a-dropdown>
     </template>
   </div>
 </template>
 <script setup lang='ts'>
-import { defineOptions, computed, ref, watch } from 'vue'
+import { defineOptions, computed, h, ref } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { TabProps } from '@/types/tab-menu'
-import { Tag as ATag, notification, Menu as AMenu, MenuItem as AMenuItem, Dropdown as ADropdown, MenuDivider as AMenuDivider } from 'ant-design-vue'
-import { CloseCircleOutlined, InfoCircleOutlined } from '@ant-design/icons-vue'
+import { Tag as ATag, notification, Menu as AMenu, Dropdown as ADropdown } from 'ant-design-vue'
+import Icon, { CloseCircleOutlined, InfoCircleOutlined } from '@ant-design/icons-vue'
 defineOptions({
   name: 'TabView'
 })
@@ -62,6 +42,23 @@ const store = useStore()
 const tabList = computed(() => {
   return store.getters.tabList
 })
+const contextTab = [
+  {
+    key: 'close-current',
+    label: '关闭当前页签',
+    icon: () => h(InfoCircleOutlined),
+  },
+  {
+    key: 'close-other',
+    label: '关闭其他页签',
+    icon: () => h(InfoCircleOutlined),
+  },
+  {
+    key: 'close-all',
+    label: '关闭全部页签',
+    icon: () => h(CloseCircleOutlined),
+  }
+]
 // 处理tab点击事件
 const router = useRouter()
 const handleTab = (item: TabProps) => {
@@ -98,20 +95,57 @@ const onContextChange = (open: boolean) => {
     store.dispatch('tabMenu/updateContextTab')
   }
 }
+// 当前激活右键菜单的tab
+const activeContextTabPath = ref<TabProps>()
 // 右键菜单
 const handleShoeContextMenu = (e: MouseEvent, tab: TabProps) => {
   e.preventDefault()
+  activeContextTabPath.value = tab
   store.dispatch('tabMenu/updateContextTab', tab.fullPath)
 }
 // 下拉菜单点击
 const handleContextMenu = (e) => {
   console.log('key', e);
-  store.dispatch('tabMenu/updateContextTab')
+  switch (e.key) {
+    // 关闭当前tab
+    case 'close-current':
+      handleCloseTab(activeContextTabPath.value)
+      break
+    // 关闭其他tab
+    case 'close-other':
+      store.dispatch('tabMenu/removeOtherTab', activeContextTabPath.value).then(() => {
+        router.push(activeContextTabPath.value.fullPath)
+      }).catch((err) => {
+        notification.error({
+          message: '关闭失败',
+          description: err.message
+        })
+      })
+      break
+    // 关闭所有tab
+    case 'close-all':
+      store.dispatch('tabMenu/removeAllTab').then((prePath) => {
+        router.push(prePath)
+      }).catch((err) => {
+        notification.error({
+          message: '关闭失败',
+          description: err.message
+        })
+      })
+  }
+  // store.dispatch('tabMenu/updateContextTab')
 }
 </script>
 <style lang='less' scoped>
 .tab-view-view {
   border-bottom: 1px solid rgb(229, 231, 235);
   border-top: 1px solid rgb(229, 230, 235);
+}
+
+/deep/.ant-dropdown-menu-item-icon {
+  svg {
+    font-size: 13px;
+    color: rgba(78, 89, 105, 0.88);
+  }
 }
 </style>

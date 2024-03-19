@@ -2,7 +2,7 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-02-22 20:15:19
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-03-16 15:47:35
+ * @LastEditTime: 2024-03-19 22:09:36
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/types/tab-menu.d.ts
  * @Description: tab菜单持久化数据
  */
