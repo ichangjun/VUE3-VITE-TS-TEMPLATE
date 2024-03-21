@@ -4,7 +4,7 @@ import { MenuItem } from "@/types/menu";
  * @Author: changjun anson1992@163.com
  * @Date: 2024-02-02 18:16:43
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-02-21 13:58:43
+ * @LastEditTime: 2024-03-20 22:01:23
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/mock/menu.ts
  * @Description: mock 菜单栏数据
  */
@@ -70,7 +70,7 @@ export const menus: MenuItem[] = [
     key: 4,
     title: '文档',
     label: '文档',
-    path: '/doc',
+    path: '/document',
     disabled: false,
     icon: 'cpu',
   }
