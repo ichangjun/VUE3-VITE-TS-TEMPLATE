@@ -2,7 +2,7 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-01-05 10:36:01
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-01-15 15:18:56
+ * @LastEditTime: 2024-04-01 19:11:49
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/README.md
  * @Description: 工程描述文档
 -->
@@ -186,3 +186,24 @@ import './style/preflight.css'
 npm run dev
 ```
 
+
+### 性能优化
+
+前端工程性能优化一直是前端工程师乐此不疲做的一件工作，这个工作是没有什么止境的，针对不同构件工具的优化方案也不一样，下面我们就针对当前工程，提供一份较为完整的性能优化方案，欢迎各位大佬指正。
+
+#### vite 构建工具方面
+
+##### 针对打包构建性能，禁用掉一些不必要的构建选项
+
+```ts
+export default defineConfig({
+ build: {
+    terserOptions: {
+      // 禁用不必要的构建选项
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    }
+})
+```

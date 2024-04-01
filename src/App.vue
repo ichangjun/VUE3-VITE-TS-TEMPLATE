@@ -1,11 +1,19 @@
-/*
+<!--
  * @Author: changjun anson1992@163.com
- * @Date: 2024-01-05 10:36:01
+ * @Date: 2024-02-01 17:40:02
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-01-12 14:27:31
- * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/App.tsx
- * @Description: 工程入口文件
- */
+ * @LastEditTime: 2024-04-01 19:57:52
+ * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/App.vue
+ * @Description: 主页
+-->
+/*
+* @Author: changjun anson1992@163.com
+* @Date: 2024-01-05 10:36:01
+* @LastEditors: changjun anson1992@163.com
+* @LastEditTime: 2024-01-12 14:27:31
+* @FilePath: /VUE3-VITE-TS-TEMPLATE/src/App.tsx
+* @Description: 工程入口文件
+*/
 
 <template>
   <div class="app-page-view">

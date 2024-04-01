@@ -2,7 +2,7 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-01-11 14:39:48
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-03-19 22:00:16
+ * @LastEditTime: 2024-04-01 19:16:40
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/router/index.ts
  * @Description: 工程路由文件
  */
@@ -60,24 +60,28 @@ const router = createRouter({
 // 路由守卫
 
 router.beforeEach((to, from, next) => {
-  const token = store.getters.token
-  // 判断是否登录
-  if (!token) {
-    if (noLoginWhiteList.includes(to.path)) {
-      next()
+  if (from && from.path !== '/login') {
+    const token = store.getters.token
+    // 判断是否登录
+    if (!token) {
+      if (noLoginWhiteList.includes(to.path)) {
+        next()
+      } else {
+        notification.warning({
+          message: '提示',
+          description: '当前登录已失效，请重新登录！',
+          duration: 2000
+        })
+        next('/login')
+      }
     } else {
-      notification.warning({
-        message: '提示',
-        description: '当前登录已失效，请重新登录！',
-        duration: 2000
-      })
-      next('/login')
+      next()
     }
   } else {
     next()
   }
 })
-router.afterEach((to, from) => {
+router.afterEach((to) => {
   // 设置当前路由
 store.dispatch('tabMenu/updateTab', to.path)
 })

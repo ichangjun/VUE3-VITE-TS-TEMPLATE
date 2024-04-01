@@ -2,11 +2,11 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-01-07 19:20:16
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-02-01 18:01:52
+ * @LastEditTime: 2024-04-01 19:16:05
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/components/i-echarts/index.tsx
  * @Description: svg 图标组件
  */
-import {  defineComponent, PropType, defineProps, computed  } from 'vue'
+import {  defineComponent, PropType, computed  } from 'vue'
 interface SvgIconProps {
   className?: string, // 类名
   icon: string, // 名称
