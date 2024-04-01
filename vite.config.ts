@@ -2,7 +2,7 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-01-05 10:36:01
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-03-27 19:25:59
+ * @LastEditTime: 2024-04-01 19:05:52
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/vite.config.ts
  * @Description: 工程配置文件
  */
@@ -45,6 +45,15 @@ export default defineConfig({
         target: 'http://localhost:3000',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/musicApi/, ''),
+      },
+    }
+  },
+  build: {
+    terserOptions: {
+      // 禁用不必要的构建选项
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
       },
     }
   }
