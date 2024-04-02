@@ -2,7 +2,7 @@
  * @Author: changjun anson1992@163.com
  * @Date: 2024-01-05 10:36:01
  * @LastEditors: changjun anson1992@163.com
- * @LastEditTime: 2024-04-02 09:35:01
+ * @LastEditTime: 2024-04-02 10:27:52
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/vite.config.ts
  * @Description: 工程配置文件
  */
@@ -23,7 +23,7 @@ export default defineConfig(({ mode }) => {
       iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')]
     })
   ]
-  if (mode === 'production' && envConfig.VITE_BUILD_ANILYZE === 'true') {
+  if (mode !== 'development' && envConfig.VITE_BUILD_ANILYZE === 'true') {
     _plugins.push(
       // 打包性能分析插件
       visualizer({
