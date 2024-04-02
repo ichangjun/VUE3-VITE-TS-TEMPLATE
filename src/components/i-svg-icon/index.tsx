@@ -6,12 +6,12 @@
  * @FilePath: /VUE3-VITE-TS-TEMPLATE/src/components/i-echarts/index.tsx
  * @Description: svg 图标组件
  */
-import {  defineComponent, PropType, computed  } from 'vue'
+import { defineComponent, PropType, computed } from 'vue'
 interface SvgIconProps {
-  className?: string, // 类名
-  icon: string, // 名称
-  color: string, // 颜色
-  size: string, // 尺寸
+  className?: string // 类名
+  icon: string // 名称
+  color: string // 颜色
+  size: string // 尺寸
 }
 export default defineComponent({
   name: 'ISvgIcon',
@@ -31,7 +31,7 @@ export default defineComponent({
     size: {
       type: String,
       default: '14px'
-    } as unknown as PropType<SvgIconProps['size']>, // svg 尺寸
+    } as unknown as PropType<SvgIconProps['size']> // svg 尺寸
   },
   setup(props) {
     // svg 类名
@@ -43,12 +43,16 @@ export default defineComponent({
       return {
         width: `${props.size.replace('px', '')}px`,
         height: `${props.size.replace('px', '')}px`,
-        position: 'relative',
+        position: 'relative'
       }
     })
-    const symbolId = computed(() => `#icon-${props.icon}`);
+    const symbolId = computed(() => `#icon-${props.icon}`)
     return () => (
-      <svg class={classList.value} aria-hidden={true} style={styleObj.value}>
+      <svg
+        class={classList.value}
+        aria-hidden={true}
+        style={styleObj.value}
+      >
         <use xlink:href={symbolId.value}></use>
       </svg>
     )
